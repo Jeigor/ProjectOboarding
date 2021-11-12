@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to demonstrate the trackRobot().</p>
+
+<button onclick="trackRobot()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+
+    function trackRobot(){
+            let input = prompt("Please enter steps per turn separated by commas.", "1,2,3");
+            let inputs = input.split(",");
+            var steps = [];
+            let x = 0;
+            let y = 0;
+            let heading = 0;
+            
+            for(let p = 0; p < inputs.length; p++){
+                let step = parseInt(inputs.splice(0,1));
+                steps.push(step);
+                p--;
+            }
+    
+            for(let i = 0; i < steps.length; i++){
+                switch(heading){
+                    case 0:
+                        y += steps[i];
+                        break;
+                    case 1:
+                        x += steps[i];
+                        break;
+                    case 2:
+                        y -= steps[i];
+                        break;
+                    case 3:
+                        x -= steps[i];
+                        break;
+                }
+                
+                heading = (heading + 1) % 4;
+                
+            }
+            finalDestination = [x,y];
+            document.getElementById("demo").innerHTML = finalDestination;
+    }
+        
+</script>
+
+</body>
+</html>
